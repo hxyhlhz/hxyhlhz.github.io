@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>TensorFlow2.0 on 巴音布鲁克的海</title>
+    <link>https://hxyhlhz.github.io/tags/TensorFlow2.0/</link>
+    <description>Recent content in TensorFlow2.0 on 巴音布鲁克的海</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 26 Apr 2020 19:41:52 +0800</lastBuildDate>
+    
+	<atom:link href="https://hxyhlhz.github.io/tags/TensorFlow2.0/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>TensorFlow2系列中TFrecord数据集建立与使用</title>
+      <link>https://hxyhlhz.github.io/post/TFrecord/</link>
+      <pubDate>Sun, 26 Apr 2020 19:41:52 +0800</pubDate>
+      
+      <guid>https://hxyhlhz.github.io/post/TFrecord/</guid>
+      <description>TFrecord数据集形式介绍 TFrecord 是在TensorFlow中的一种数据集存储形式，可以使TensorFlow高效的读取和利用这些数据集。 TFrecord的结构可以有以下理解： 由若干个 tf.train.Feature 特征组成 tf.train.Example （字典形式）， 由若干个序列化的tf.train.Example字典元素组成的列表文件就是</description>
+    </item>
+    
+  </channel>
+</rss>

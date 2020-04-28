@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>使用Github来建立自己的图床 | 巴音布鲁克的海</title>
+    <meta property="og:title" content="使用Github来建立自己的图床 - 巴音布鲁克的海">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2020-03-02T15:14:58&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2020-03-02T15:14:58&#43;08:00'>
+        
+    <meta name="Keywords" content=" ">
+    <meta name="description" content="使用Github来建立自己的图床">
+        
+    <meta name="author" content="巴音布鲁克的海">
+    <meta property="og:url" content="https://hxyhlhz.github.io/post/picture/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4031353640611810",
+        enable_page_level_ads: true
+    });
+    </script>
+    
+
+
+    
+    
+        <link rel="stylesheet" href='/css/douban.css'>
+    
+        <link rel="stylesheet" href='/css/other.css'>
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://hxyhlhz.github.io">
+                        巴音布鲁克的海
+                    </a>
+                
+                <p class="description"> </p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://hxyhlhz.github.io">首页</a>
+                    
+                    <a  href="https://hxyhlhz.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://hxyhlhz.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 15px;
+        display: none;
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一--why-github">一，  Why Github</a></li>
+    <li><a href="#二--准备工作">二，  准备工作</a></li>
+    <li><a href="#三--建立图床和设置">三，  建立图床和设置</a>
+      <ul>
+        <li><a href="#1github上建立仓库">1，Github上建立仓库</a></li>
+        <li><a href="#2设置token">2，设置Token</a></li>
+        <li><a href="#3-设置picgo端">3， 设置PicGO端</a></li>
+        <li><a href="#4-利用jsdelivr对github进行cdn免费加速">4， 利用jsdelivr对github进行cdn免费加速</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading"></a></li>
+    <li><a href="#五使用picgo与gitee构建图床">五，使用PicGo与gitee构建图床</a>
+      <ul>
+        <li><a href="#1准备工作">1，准备工作</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+    })
+</script>
+    <article class="post">
+        <header>
+            <h1 class="post-title">使用Github来建立自己的图床</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2020年3月2日
+        </date>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <h2 id="一--why-github">一，  Why Github</h2>
+<p>​	最近在折腾自己的个人博客，也成功将基于Hugo框架的博客部署在了Github pages上。但是我发现在使用Markdown编辑自己的博客文章时。插入图片如果在本地会非常麻烦，无论是上传还是寻找路径。所以我想到了自己搭建一个图床。作为博客中插图的集中地。</p>
+<p>​	图床，顾名思义就是专门存放图片的线上存储。对我现阶段来说，我需要他免费（毕竟囊中羞涩，在后续准备入手云服务器时再考虑OSS），可提供图片的路径和预览。Github恰好符合我的要求。</p>
+<p>​	但是Github也有缺点。</p>
+<p>（1）不安全，图片会公开。本身自己的博客也没什么怕人的。Pass</p>
+<p>（2）国内访问不稳定。这段时间github的国内访问极其不稳定，有一段时间甚至被墙。</p>
+<p>（3）不方便管理图片（也可能是我没找到好的办法，找到后会更新把这条删掉）</p>
+<h2 id="二--准备工作">二，  准备工作</h2>
+<p>​	在Github上搭建图床你只需要有一个github账号即可</p>
+<p>​	为了上传管理方便，还使用了名为PicGo的图片管理工具。这是一个开源的工具。</p>
+<p>​	Github地址：https://github.com/Molunerfinn/PicGo</p>
+<h2 id="三--建立图床和设置">三，  建立图床和设置</h2>
+<h3 id="1github上建立仓库">1，Github上建立仓库</h3>
+<p>熟悉的建库操作，注意图上的箭头处即可</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hxyhlhz/ImgHosting/Blog-Pic/%E5%9B%BE%E5%BA%8A1.png" alt="图床1"></p>
+<h3 id="2设置token">2，设置Token</h3>
+<p>在右上角Settings个人设置页面，点击Developer Settings 。进入下图 选项卡，选择Generate new token</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hxyhlhz/ImgHosting/Blog-Pic/%E5%9B%BE%E5%BA%8A2.png" alt="图床2"></p>
+<p>勾选箭头所示选项。GIthub端设置完成</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hxyhlhz/ImgHosting/Blog-Pic/%E5%9B%BE%E5%BA%8A3.png" alt="图床3"></p>
+<h3 id="3-设置picgo端">3， 设置PicGO端</h3>
+<p>下载好的PicGo客户端界面如下（windows端）他支持多种图床提供商。具体可以去github中寻找。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hxyhlhz/ImgHosting/Blog-Pic/%E5%9B%BE%E5%BA%8A4.png" alt="PicGo"></p>
+<p>在图床设置中找到github图床</p>
+<p>设置页如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hxyhlhz/ImgHosting/Blog-Pic/%E5%9B%BE%E5%BA%8A5.png" alt="设置"></p>
+<p>解释下对应栏目</p>
+<p>（1）仓库名： 用户名/图床仓库的名称</p>
+<p>（2）分支名：图片所在分支，一般为master</p>
+<p>（3）Token： 前文中新建的Token</p>
+<p>（4）存储路径： 可不填，例如img/ 就是上传到仓库中新建的img文件夹中</p>
+<p>（5）自定义域名：它的作用是，在图片上传后，PicGo 会按照【自定义域名+储存路径+上传的图片名】的方式生成访问链接，并放到粘贴板上，因为我们要使用 jsDelivr 加速访问，所以可以设置为【https://cdn.jsdelivr.net/gh/用户名/图床仓库名 】，上传完毕后，我们就可以通过【https://cdn.jsdelivr.net/gh/用户名/图床仓库名/图片路径 】加速访问我们的图片</p>
+<p>至此，基Github的图床建立完成。</p>
+<h3 id="4-利用jsdelivr对github进行cdn免费加速">4， 利用jsdelivr对github进行cdn免费加速</h3>
+<p>在国内使用Github时会出现访问速度慢甚至访问失败的情况。所以在使用GitHub做图床或者上传库版本的时候，会采用cdn加速访问的方式。</p>
+<p>CDN的全称是Content Delivery Network，即内容分发网络。CDN是构建在网络之上的内容分发网络，依靠部署在各地的边缘服务器，通过中心平台的负载均衡、内容分发、调度等功能模块，使用户就近获取所需内容，降低网络拥塞，提高用户访问响应速度和命中率。CDN的关键技术主要有内容存储和分发技术。——百度百科</p>
+<p>放在Github的资源在国内加载速度比较慢，因此需要使用CDN加速来优化网站打开速度，jsDelivr + Github便是免费且好用的CDN，非常适合博客网站使用。</p>
+<h2 id="heading"></h2>
+<h2 id="五使用picgo与gitee构建图床">五，使用PicGo与gitee构建图床</h2>
+<p>因为国内github的图片上传相当不稳定，在查阅相关资料后更换Gitee作为图床的托管仓库</p>
+<h3 id="1准备工作">1，准备工作</h3>
+<p>安装nodejs，</p>
+<p>在PicGo中安装gitee插件，如下图所示</p>
+<p><img src="https://gitee.com/hxyhlhz/Imagehouse/raw/master/img/20200426195420.png" alt="插件"></p>
+<p>在gitee（码云）中创建库，借用知乎回答中的图来说明建库所需要注意的地方</p>
+<p><img src="https://gitee.com/hxyhlhz/Imagehouse/raw/master/img/v2-%E7%9F%A5%E4%B9%8E720w.jpg" alt="建立仓库"></p>
+<h4 id="2获取tocken">2，获取tocken</h4>
+<p>（1）在码云主界面右上角进入设置页面
+（2）如图左侧找到“私人令牌”进入
+<img src="https://gitee.com/hxyhlhz/Imagehouse/raw/master/img/20200426210836.png" alt="tocken">
+（3）点击右上角“生成新令牌”如图勾选相关选项即可（注意，tocken只会在刚创建时显示，与github创建tocken相似）
+<img src="https://gitee.com/hxyhlhz/Imagehouse/raw/master/img/20200426211240.png" alt="权限"></p>
+<h4 id="3picgo设置">3，PicGo设置</h4>
+<p>设置界面与github类似，如下图所示
+<img src="https://gitee.com/hxyhlhz/Imagehouse/raw/master/img/20200426210720.png" alt="设置pic">
+对应选项为：
+repo：用户名/仓库名称</p>
+<p>branch：分支，这里写上master</p>
+<p>token：填入码云的私人令牌</p>
+<p>path：路径，一般写上img/</p>
+<p>customPath：提交消息，这一项和下一项customURL都不用填。在提交到码云后，会显示提交消息，插件默认提交的是 Upload 图片名 by picGo - 时间</p>
+<p>至此，gitee在PicGo中的设置完成</p>
+
+        </div>
+
+        
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/Hugo1/"> 在Windows环境下利用Hugo框架搭建自己的博客</a></li>
+        
+        <li><a href="/archives/">归档</a></li>
+        
+        <li><a href="/search/">搜索</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            没有标签
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='https://hxyhlhz.github.io/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://hxyhlhz.github.io">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://hxyhlhz.github.io/post/TFrecord/" title="TensorFlow2系列中TFrecord数据集建立与使用">TensorFlow2系列中TFrecord数据集建立与使用</a>
+    </li>
+    
+    <li>
+        <a href="https://hxyhlhz.github.io/post/%E5%9F%BA%E4%BA%8EAnaconda%E7%9A%84PyTorch%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/" title="基于Anaconda的PyTorch虚拟环境安装">基于Anaconda的PyTorch虚拟环境安装</a>
+    </li>
+    
+    <li>
+        <a href="https://hxyhlhz.github.io/post/picture/" title="使用Github来建立自己的图床">使用Github来建立自己的图床</a>
+    </li>
+    
+    <li>
+        <a href="https://hxyhlhz.github.io/post/Hugo1/" title=" 在Windows环境下利用Hugo框架搭建自己的博客"> 在Windows环境下利用Hugo框架搭建自己的博客</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://hxyhlhz.github.io/categories/My-Blog/">My Blog (1)</a></li>
+    
+    <li><a href="https://hxyhlhz.github.io/categories/TensorFlow/">TensorFlow (1)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://hxyhlhz.github.io/tags/TensorFlow2.0/">TensorFlow2.0</a>
+    
+    <a href="https://hxyhlhz.github.io/tags/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%8A%98%E8%85%BE/">个人博客折腾</a>
+    
+    <a href="https://hxyhlhz.github.io/tags/%E5%BB%BA%E7%AB%8B/">建立</a>
+    
+    <a href="https://hxyhlhz.github.io/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/">数据集</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://www.blogliu.xyz" title="巴音布鲁克的海">巴音布鲁克的海</a>
+        </li>
+        
+        <li>
+            <a target="_blank" href="http://yuedu.baidu.com/ebook/14a722970740be1e640e9a3e" title="Android Gradle权威指南">Android Gradle权威指南</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://hxyhlhz.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="https://hxyhlhz.github.io">巴音布鲁克的海 By 巴音布鲁克的海</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'GA ID', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+    <script src='/js/douban.js'></script>
+
+</body>
+
+</html>

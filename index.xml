@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>巴音布鲁克的海</title>
+    <link>https://hxyhlhz.github.io/</link>
+    <description>Recent content on 巴音布鲁克的海</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 28 Apr 2020 10:20:27 +0000</lastBuildDate>
+    
+	<atom:link href="https://hxyhlhz.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>关于我</title>
+      <link>https://hxyhlhz.github.io/about/</link>
+      <pubDate>Tue, 28 Apr 2020 10:20:27 +0000</pubDate>
+      
+      <guid>https://hxyhlhz.github.io/about/</guid>
+      <description>在读研究生一枚，正在试图挤入AI算法岗的路上。</description>
+    </item>
+    
+    <item>
+      <title>TensorFlow2系列中TFrecord数据集建立与使用</title>
+      <link>https://hxyhlhz.github.io/post/TFrecord/</link>
+      <pubDate>Sun, 26 Apr 2020 19:41:52 +0800</pubDate>
+      
+      <guid>https://hxyhlhz.github.io/post/TFrecord/</guid>
+      <description>TFrecord数据集形式介绍 TFrecord 是在TensorFlow中的一种数据集存储形式，可以使TensorFlow高效的读取和利用这些数据集。 TFrecord的结构可以有以下理解： 由若干个 tf.train.Feature 特征组成 tf.train.Example （字典形式）， 由若干个序列化的tf.train.Example字典元素组成的列表文件就是</description>
+    </item>
+    
+    <item>
+      <title>基于Anaconda的PyTorch虚拟环境安装</title>
+      <link>https://hxyhlhz.github.io/post/%E5%9F%BA%E4%BA%8EAnaconda%E7%9A%84PyTorch%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Sun, 05 Apr 2020 16:39:31 +0800</pubDate>
+      
+      <guid>https://hxyhlhz.github.io/post/%E5%9F%BA%E4%BA%8EAnaconda%E7%9A%84PyTorch%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/</guid>
+      <description>一，版本说明 （1）， Anaconda： 基于Python3.7版本 （2），PyTorch：官网1.4版本（GPU） （3），CUDA： CUDA10.2 （注：官方最新版本只支持到10.1版本，但本机10.2版本可用。稳定性未知。最好安装10.1版本) 二，Anaconda虚拟环境安装 1，创建Anaco</description>
+    </item>
+    
+    <item>
+      <title>使用Github来建立自己的图床</title>
+      <link>https://hxyhlhz.github.io/post/picture/</link>
+      <pubDate>Mon, 02 Mar 2020 15:14:58 +0800</pubDate>
+      
+      <guid>https://hxyhlhz.github.io/post/picture/</guid>
+      <description>一， Why Github ​ 最近在折腾自己的个人博客，也成功将基于Hugo框架的博客部署在了Github pages上。但是我发现在使用Markdown编辑自己的博客文章时。插入图片如果在本地会非常麻烦，无论是上传还是寻找路径。所以我想到了自己搭建一个图床。作为博客中插图的集中地。 ​ 图床，顾名思义就</description>
+    </item>
+    
+    <item>
+      <title> 在Windows环境下利用Hugo框架搭建自己的博客</title>
+      <link>https://hxyhlhz.github.io/post/Hugo1/</link>
+      <pubDate>Sat, 29 Feb 2020 14:02:35 +0800</pubDate>
+      
+      <guid>https://hxyhlhz.github.io/post/Hugo1/</guid>
+      <description>一， Hugo简介 ​ Hugo是基于Go语言开发的个人静态Blog框架，优势在部署简单。但是由于是静态网站，文章需要在本地编辑，转化为静态网页后才可以显示在Blog部署的环境中。 二， Hugo相关资料 - 安装包下载地址（Github）[https://github.com/gohugoi</description>
+    </item>
+    
+    <item>
+      <title>归档</title>
+      <link>https://hxyhlhz.github.io/archives/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hxyhlhz.github.io/archives/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>搜索</title>
+      <link>https://hxyhlhz.github.io/search/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hxyhlhz.github.io/search/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

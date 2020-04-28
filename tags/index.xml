@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on 巴音布鲁克的海</title>
+    <link>https://hxyhlhz.github.io/tags/</link>
+    <description>Recent content in Tags on 巴音布鲁克的海</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 26 Apr 2020 19:41:52 +0800</lastBuildDate>
+    
+	<atom:link href="https://hxyhlhz.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>TensorFlow2.0</title>
+      <link>https://hxyhlhz.github.io/tags/TensorFlow2.0/</link>
+      <pubDate>Sun, 26 Apr 2020 19:41:52 +0800</pubDate>
+      
+      <guid>https://hxyhlhz.github.io/tags/TensorFlow2.0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>数据集</title>
+      <link>https://hxyhlhz.github.io/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/</link>
+      <pubDate>Sun, 26 Apr 2020 19:41:52 +0800</pubDate>
+      
+      <guid>https://hxyhlhz.github.io/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>个人博客折腾</title>
+      <link>https://hxyhlhz.github.io/tags/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%8A%98%E8%85%BE/</link>
+      <pubDate>Sat, 29 Feb 2020 14:02:35 +0800</pubDate>
+      
+      <guid>https://hxyhlhz.github.io/tags/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%8A%98%E8%85%BE/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>建立</title>
+      <link>https://hxyhlhz.github.io/tags/%E5%BB%BA%E7%AB%8B/</link>
+      <pubDate>Sat, 29 Feb 2020 14:02:35 +0800</pubDate>
+      
+      <guid>https://hxyhlhz.github.io/tags/%E5%BB%BA%E7%AB%8B/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

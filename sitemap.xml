@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://hxyhlhz.github.io/about/</loc>
+    <lastmod>2020-04-28T10:20:27+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hxyhlhz.github.io/</loc>
+    <lastmod>2020-04-28T10:20:27+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hxyhlhz.github.io/categories/</loc>
+    <lastmod>2020-04-26T19:41:52+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hxyhlhz.github.io/post/</loc>
+    <lastmod>2020-04-26T19:41:52+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hxyhlhz.github.io/tags/</loc>
+    <lastmod>2020-04-26T19:41:52+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hxyhlhz.github.io/categories/TensorFlow/</loc>
+    <lastmod>2020-04-26T19:41:52+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hxyhlhz.github.io/tags/TensorFlow2.0/</loc>
+    <lastmod>2020-04-26T19:41:52+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hxyhlhz.github.io/post/TFrecord/</loc>
+    <lastmod>2020-04-26T19:41:52+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hxyhlhz.github.io/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/</loc>
+    <lastmod>2020-04-26T19:41:52+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hxyhlhz.github.io/post/%E5%9F%BA%E4%BA%8EAnaconda%E7%9A%84PyTorch%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/</loc>
+    <lastmod>2020-04-05T16:39:31+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hxyhlhz.github.io/post/picture/</loc>
+    <lastmod>2020-03-02T15:14:58+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hxyhlhz.github.io/post/Hugo1/</loc>
+    <lastmod>2020-02-29T14:02:35+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hxyhlhz.github.io/categories/My-Blog/</loc>
+    <lastmod>2020-02-29T14:02:35+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hxyhlhz.github.io/tags/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%8A%98%E8%85%BE/</loc>
+    <lastmod>2020-02-29T14:02:35+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hxyhlhz.github.io/tags/%E5%BB%BA%E7%AB%8B/</loc>
+    <lastmod>2020-02-29T14:02:35+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hxyhlhz.github.io/archives/</loc>
+  </url>
+  
+  <url>
+    <loc>https://hxyhlhz.github.io/search/</loc>
+  </url>
+  
+</urlset>

@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>TensorFlow2系列中TFrecord数据集建立与使用 | 巴音布鲁克的海</title>
+    <meta property="og:title" content="TensorFlow2系列中TFrecord数据集建立与使用 - 巴音布鲁克的海">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2020-04-26T19:41:52&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2020-04-26T19:41:52&#43;08:00'>
+        
+    <meta name="Keywords" content=" ">
+    <meta name="description" content="TensorFlow2系列中TFrecord数据集建立与使用">
+        
+    <meta name="author" content="巴音布鲁克的海">
+    <meta property="og:url" content="https://hxyhlhz.github.io/post/TFrecord/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4031353640611810",
+        enable_page_level_ads: true
+    });
+    </script>
+    
+
+
+    
+    
+        <link rel="stylesheet" href='/css/douban.css'>
+    
+        <link rel="stylesheet" href='/css/other.css'>
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://hxyhlhz.github.io">
+                        巴音布鲁克的海
+                    </a>
+                
+                <p class="description"> </p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://hxyhlhz.github.io">首页</a>
+                    
+                    <a  href="https://hxyhlhz.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://hxyhlhz.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 15px;
+        display: none;
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#tfrecord数据集形式介绍">TFrecord数据集形式介绍</a></li>
+    <li><a href="#尝试建立tfrecord数据集">尝试建立TFrecord数据集</a>
+      <ul>
+        <li><a href="#1准备数据">1，准备数据</a></li>
+        <li><a href="#2-建立tfrecord数据集">2, 建立TFrecord数据集</a></li>
+        <li><a href="#3读取tfrecord文件">3，读取TFrecord文件</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考文档">参考文档</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+    })
+</script>
+    <article class="post">
+        <header>
+            <h1 class="post-title">TensorFlow2系列中TFrecord数据集建立与使用</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2020年4月26日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://hxyhlhz.github.io/categories/TensorFlow'>TensorFlow</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <h2 id="tfrecord数据集形式介绍">TFrecord数据集形式介绍</h2>
+<p>TFrecord 是在TensorFlow中的一种数据集存储形式，可以使TensorFlow高效的读取和利用这些数据集。</p>
+<p>TFrecord的结构可以有以下理解：</p>
+<p>由若干个 tf.train.Feature 特征组成 tf.train.Example （字典形式）， 由若干个序列化的tf.train.Example字典元素组成的列表文件就是TFrecord数据集文件。</p>
+<p>形式如下</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#998;font-style:italic"># dataset.tfrecords</span>
+[
+    {   <span style="color:#998;font-style:italic"># example 1 (tf.train.Example)</span>
+        <span style="color:#d14">&#39;feature_1&#39;</span>: tf<span style="color:#000;font-weight:bold">.</span>train<span style="color:#000;font-weight:bold">.</span>Feature,
+        <span style="color:#000;font-weight:bold">...</span>
+        <span style="color:#d14">&#39;feature_k&#39;</span>: tf<span style="color:#000;font-weight:bold">.</span>train<span style="color:#000;font-weight:bold">.</span>Feature
+    },
+    <span style="color:#000;font-weight:bold">...</span>
+    {   <span style="color:#998;font-style:italic"># example N (tf.train.Example)</span>
+        <span style="color:#d14">&#39;feature_1&#39;</span>: tf<span style="color:#000;font-weight:bold">.</span>train<span style="color:#000;font-weight:bold">.</span>Feature,
+        <span style="color:#000;font-weight:bold">...</span>
+        <span style="color:#d14">&#39;feature_k&#39;</span>: tf<span style="color:#000;font-weight:bold">.</span>train<span style="color:#000;font-weight:bold">.</span>Feature
+    }
+]
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="尝试建立tfrecord数据集">尝试建立TFrecord数据集</h2>
+<h3 id="1准备数据">1，准备数据</h3>
+<p>此次作为测试的数据集是截取的MVSO图像情感数据集中的一小部分</p>
+<p>文件结构:</p>
+<p><img src="https://gitee.com/hxyhlhz/Imagehouse/raw/master/img/20200428164036.png" alt="文件结构"></p>
+<h3 id="2-建立tfrecord数据集">2, 建立TFrecord数据集</h3>
+<p>建立数据集时，我们要对数据文件中的每个元素进行下面的步骤：</p>
+<ul>
+<li>读取该数据到内存</li>
+<li>将该元素对应的特征（图像数据，类标等）建立Feature字典（由tf.train.Feature元素组成）。并将其转换为多个 <code>tf.train.Example</code>'对象</li>
+<li>将该 <code>tf.train.Example</code> 对象序列化为字符串，并通过一个预先定义的 <code>tf.io.TFRecordWriter</code> 写入 TFRecord 文件。</li>
+</ul>
+<p><strong>代码示例</strong></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">tensorflow</span> <span style="color:#000;font-weight:bold">as</span> <span style="color:#555">tf</span> 
+impport os
+<span style="color:#998;font-style:italic">###  对原始数据文件名标签进行初始化</span>
+data_dir <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;./DataTes&#39;</span>
+train_false <span style="color:#000;font-weight:bold">=</span> data_dir <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#39;/Max-1/&#39;</span>
+train_true <span style="color:#000;font-weight:bold">=</span> data_dir <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#39;/Max1/&#39;</span>
+tfrecord_file <span style="color:#000;font-weight:bold">=</span> data_dir <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#39;/train.tfrecords&#39;</span>  <span style="color:#998;font-style:italic">## TFrecord文件存储路径</span>
+
+<span style="color:#998;font-style:italic">## 遍历文件目录下所有文件路径并存储在列表中</span>
+train_false_filenames <span style="color:#000;font-weight:bold">=</span> [train_false <span style="color:#000;font-weight:bold">+</span> filename <span style="color:#000;font-weight:bold">for</span> filename <span style="color:#000;font-weight:bold">in</span> os<span style="color:#000;font-weight:bold">.</span>listdir(train_false)] 
+train_true_filenames <span style="color:#000;font-weight:bold">=</span> [train_true <span style="color:#000;font-weight:bold">+</span> filename <span style="color:#000;font-weight:bold">for</span> filename <span style="color:#000;font-weight:bold">in</span> os<span style="color:#000;font-weight:bold">.</span>listdir(train_true)]
+train_filenames <span style="color:#000;font-weight:bold">=</span> train_false_filenames <span style="color:#000;font-weight:bold">+</span> train_true_filenames
+<span style="color:#998;font-style:italic">### 将max-1文件与max1文件夹标注标签</span>
+train_labels <span style="color:#000;font-weight:bold">=</span> [<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>] <span style="color:#000;font-weight:bold">*</span> <span style="color:#0086b3">len</span>(train_false_filenames) <span style="color:#000;font-weight:bold">+</span> [<span style="color:#099">1</span>] <span style="color:#000;font-weight:bold">*</span> <span style="color:#0086b3">len</span>(train_true_filenames)
+
+<span style="color:#998;font-style:italic">### 迭代读取每张图片，建立 tf.train.Feature 字典和 tf.train.Example 对象，序列化并写入 TFRecord 文件。</span>
+<span style="color:#000;font-weight:bold">with</span> tf<span style="color:#000;font-weight:bold">.</span>io<span style="color:#000;font-weight:bold">.</span>TFRecordWriter(tfrecord_file) <span style="color:#000;font-weight:bold">as</span> writer:
+    <span style="color:#000;font-weight:bold">for</span> filename, label <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">zip</span>(train_filenames, train_labels):
+        image <span style="color:#000;font-weight:bold">=</span> <span style="color:#0086b3">open</span>(filename, <span style="color:#d14">&#39;rb&#39;</span>)<span style="color:#000;font-weight:bold">.</span>read()     <span style="color:#998;font-style:italic"># 读取数据集图片到内存，image 为一个 Byte 类型的字符串</span>
+        feature <span style="color:#000;font-weight:bold">=</span> {                             <span style="color:#998;font-style:italic"># 建立 tf.train.Feature 字典</span>
+            <span style="color:#998;font-style:italic"># 图片是一个 Bytes 对象</span>
+            <span style="color:#d14">&#39;image&#39;</span>: tf<span style="color:#000;font-weight:bold">.</span>train<span style="color:#000;font-weight:bold">.</span>Feature(bytes_list<span style="color:#000;font-weight:bold">=</span>tf<span style="color:#000;font-weight:bold">.</span>train<span style="color:#000;font-weight:bold">.</span>BytesList(value<span style="color:#000;font-weight:bold">=</span>[image])),  
+            <span style="color:#998;font-style:italic"># 标签是一个 Int 对象</span>
+            <span style="color:#d14">&#39;label&#39;</span>: tf<span style="color:#000;font-weight:bold">.</span>train<span style="color:#000;font-weight:bold">.</span>Feature(int64_list<span style="color:#000;font-weight:bold">=</span>tf<span style="color:#000;font-weight:bold">.</span>train<span style="color:#000;font-weight:bold">.</span>Int64List(value<span style="color:#000;font-weight:bold">=</span>[label]))   
+        }
+        example <span style="color:#000;font-weight:bold">=</span> tf<span style="color:#000;font-weight:bold">.</span>train<span style="color:#000;font-weight:bold">.</span>Example(features<span style="color:#000;font-weight:bold">=</span>tf<span style="color:#000;font-weight:bold">.</span>train<span style="color:#000;font-weight:bold">.</span>Features(feature<span style="color:#000;font-weight:bold">=</span>feature)) <span style="color:#998;font-style:italic"># 通过字典建立 Example</span>
+        writer<span style="color:#000;font-weight:bold">.</span>write(example<span style="color:#000;font-weight:bold">.</span>SerializeToString())   <span style="color:#998;font-style:italic"># 将Example序列化并写入 TFRecord 文件</span>
+        
+</code></pre></td></tr></table>
+</div>
+</div><p>其中需要注意的点：</p>
+<p>1，tf.io.TFRecordWriter`使用时是需要关闭的，上述代码中使用  with 调用函数代替执行了writer.close()。</p>
+<p>2， tf.train.Feature支持三种数据格式：</p>
+<ul>
+<li><code>tf.train.BytesList</code> ：字符串或原始 Byte 文件（如图片），通过 <code>bytes_list</code> 参数传入一个由字符串数组初始化的 <code>tf.train.BytesList</code> 对象；</li>
+<li><code>tf.train.FloatList</code> ：浮点数，通过 <code>float_list</code> 参数传入一个由浮点数数组初始化的 <code>tf.train.FloatList</code> 对象；</li>
+<li><code>tf.train.Int64List</code> ：整数，通过 <code>int64_list</code> 参数传入一个由整数数组初始化的 <code>tf.train.Int64List</code> 对象。</li>
+</ul>
+<p>3，如果只希望保存一个元素而非数组，传入一个只有一个元素的数组即可。</p>
+<p>文件执行完毕后，会在<code>tfrecord_file</code> 所指向的文件地址获得一个 <code>train.tfrecords</code> 文件。</p>
+<h3 id="3读取tfrecord文件">3，读取TFrecord文件</h3>
+<p>首先解释下<code>Dataset.map</code> 方法，使用Dataset.map(转换函数)   方法可以将转换函数映射到数据集每一个元素。</p>
+<p>因此，在读取TFrecord文件时可以通过此方法结合<code>tf.io.parse_single_example</code> 函数对数据集中的每一个序列化的 <code>tf.train.Example</code> 对象解码。</p>
+<p>代码如下所示：</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">raw_dataset <span style="color:#000;font-weight:bold">=</span> tf<span style="color:#000;font-weight:bold">.</span>data<span style="color:#000;font-weight:bold">.</span>TFRecordDataset(tfrecord_file)    <span style="color:#998;font-style:italic"># 读取 TFRecord 文件</span>
+
+feature_description <span style="color:#000;font-weight:bold">=</span> { <span style="color:#998;font-style:italic"># 定义Feature结构，告诉解码器每个Feature的类型是什么</span>
+    <span style="color:#d14">&#39;image&#39;</span>: tf<span style="color:#000;font-weight:bold">.</span>io<span style="color:#000;font-weight:bold">.</span>FixedLenFeature([], tf<span style="color:#000;font-weight:bold">.</span>string),
+    <span style="color:#d14">&#39;label&#39;</span>: tf<span style="color:#000;font-weight:bold">.</span>io<span style="color:#000;font-weight:bold">.</span>FixedLenFeature([], tf<span style="color:#000;font-weight:bold">.</span>int64),
+}
+
+<span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">_parse_example</span>(example_string): <span style="color:#998;font-style:italic"># 将 TFRecord 文件中的每一个序列化的 tf.train.Example 解码</span>
+    feature_dict <span style="color:#000;font-weight:bold">=</span> tf<span style="color:#000;font-weight:bold">.</span>io<span style="color:#000;font-weight:bold">.</span>parse_single_example(example_string, feature_description)
+    feature_dict[<span style="color:#d14">&#39;image&#39;</span>] <span style="color:#000;font-weight:bold">=</span> tf<span style="color:#000;font-weight:bold">.</span>io<span style="color:#000;font-weight:bold">.</span>decode_jpeg(feature_dict[<span style="color:#d14">&#39;image&#39;</span>])    <span style="color:#998;font-style:italic"># 解码JPEG图片</span>
+    <span style="color:#000;font-weight:bold">return</span> feature_dict[<span style="color:#d14">&#39;image&#39;</span>], feature_dict[<span style="color:#d14">&#39;label&#39;</span>]
+
+<span style="color:#998;font-style:italic">## 利用dataset.map对其中所有元素进行解码</span>
+dataset <span style="color:#000;font-weight:bold">=</span> raw_dataset<span style="color:#000;font-weight:bold">.</span>map(_parse_example)  <span style="color:#998;font-style:italic">## dataset 已经成为一个可用的数据集了</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>运行以上代码后，我们获得一个数据集对象 <code>dataset</code> ，这已经成为了一个可以用于训练的 <code>tf.data.Dataset</code> 对象</p>
+<p>使用以下代码输出其中图片和对应类标</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">matplotlib.pyplot</span> <span style="color:#000;font-weight:bold">as</span> <span style="color:#555">plt</span>
+<span style="color:#000;font-weight:bold">for</span> image, label <span style="color:#000;font-weight:bold">in</span> dataset:
+    plt<span style="color:#000;font-weight:bold">.</span>title(<span style="color:#d14">&#39;-1&#39;</span> <span style="color:#000;font-weight:bold">if</span> label <span style="color:#000;font-weight:bold">==</span> <span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span> <span style="color:#000;font-weight:bold">else</span> <span style="color:#d14">&#39;1&#39;</span>)
+    plt<span style="color:#000;font-weight:bold">.</span>imshow(image<span style="color:#000;font-weight:bold">.</span>numpy())
+    plt<span style="color:#000;font-weight:bold">.</span>show()
+</code></pre></td></tr></table>
+</div>
+</div><p>部分结果如图所示</p>
+<p><img src="https://gitee.com/hxyhlhz/Imagehouse/raw/master/img/20200428205849.png" alt="示例"></p>
+<h2 id="参考文档">参考文档</h2>
+<p>本文属于学习过程手记，内容参考了下面两个教程文档</p>
+<p><a href="https://lyhue1991.github.io/eat_tensorflow2_in_30_days/5-1,%E6%95%B0%E6%8D%AE%E7%AE%A1%E9%81%93Dataset.html">30天吃掉TensorFlow2，数据管道篇</a></p>
+<p><a href="https://tf.wiki/zh/basic/tools.html#tfrecord-tensorflow">简单粗暴TensorFlow2</a></p>
+
+        </div>
+
+        
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/%E5%9F%BA%E4%BA%8EAnaconda%E7%9A%84PyTorch%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/">基于Anaconda的PyTorch虚拟环境安装</a></li>
+        
+        <li><a href="/post/picture/">使用Github来建立自己的图床</a></li>
+        
+        <li><a href="/post/Hugo1/"> 在Windows环境下利用Hugo框架搭建自己的博客</a></li>
+        
+        <li><a href="/archives/">归档</a></li>
+        
+        <li><a href="/search/">搜索</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='https://hxyhlhz.github.io/tags/TensorFlow2.0'>TensorFlow2.0</a></li>
+                
+                <li><a href='https://hxyhlhz.github.io/tags/%E6%95%B0%E6%8D%AE%E9%9B%86'>数据集</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='https://hxyhlhz.github.io/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://hxyhlhz.github.io">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://hxyhlhz.github.io/post/TFrecord/" title="TensorFlow2系列中TFrecord数据集建立与使用">TensorFlow2系列中TFrecord数据集建立与使用</a>
+    </li>
+    
+    <li>
+        <a href="https://hxyhlhz.github.io/post/%E5%9F%BA%E4%BA%8EAnaconda%E7%9A%84PyTorch%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/" title="基于Anaconda的PyTorch虚拟环境安装">基于Anaconda的PyTorch虚拟环境安装</a>
+    </li>
+    
+    <li>
+        <a href="https://hxyhlhz.github.io/post/picture/" title="使用Github来建立自己的图床">使用Github来建立自己的图床</a>
+    </li>
+    
+    <li>
+        <a href="https://hxyhlhz.github.io/post/Hugo1/" title=" 在Windows环境下利用Hugo框架搭建自己的博客"> 在Windows环境下利用Hugo框架搭建自己的博客</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://hxyhlhz.github.io/categories/My-Blog/">My Blog (1)</a></li>
+    
+    <li><a href="https://hxyhlhz.github.io/categories/TensorFlow/">TensorFlow (1)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://hxyhlhz.github.io/tags/TensorFlow2.0/">TensorFlow2.0</a>
+    
+    <a href="https://hxyhlhz.github.io/tags/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%8A%98%E8%85%BE/">个人博客折腾</a>
+    
+    <a href="https://hxyhlhz.github.io/tags/%E5%BB%BA%E7%AB%8B/">建立</a>
+    
+    <a href="https://hxyhlhz.github.io/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/">数据集</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://www.blogliu.xyz" title="巴音布鲁克的海">巴音布鲁克的海</a>
+        </li>
+        
+        <li>
+            <a target="_blank" href="http://yuedu.baidu.com/ebook/14a722970740be1e640e9a3e" title="Android Gradle权威指南">Android Gradle权威指南</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://hxyhlhz.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="https://hxyhlhz.github.io">巴音布鲁克的海 By 巴音布鲁克的海</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'GA ID', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+    <script src='/js/douban.js'></script>
+
+</body>
+
+</html>

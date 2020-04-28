@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title> 在Windows环境下利用Hugo框架搭建自己的博客 | 巴音布鲁克的海</title>
+    <meta property="og:title" content=" 在Windows环境下利用Hugo框架搭建自己的博客 - 巴音布鲁克的海">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2020-02-29T14:02:35&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2020-02-29T14:02:35&#43;08:00'>
+        
+    <meta name="Keywords" content=" ">
+    <meta name="description" content=" 在Windows环境下利用Hugo框架搭建自己的博客">
+        
+    <meta name="author" content="巴音布鲁克的海">
+    <meta property="og:url" content="https://hxyhlhz.github.io/post/Hugo1/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4031353640611810",
+        enable_page_level_ads: true
+    });
+    </script>
+    
+
+
+    
+    
+        <link rel="stylesheet" href='/css/douban.css'>
+    
+        <link rel="stylesheet" href='/css/other.css'>
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://hxyhlhz.github.io">
+                        巴音布鲁克的海
+                    </a>
+                
+                <p class="description"> </p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://hxyhlhz.github.io">首页</a>
+                    
+                    <a  href="https://hxyhlhz.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://hxyhlhz.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 15px;
+        display: none;
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一-hugo简介">一， Hugo简介</a></li>
+    <li><a href="#二--hugo相关资料">二，  Hugo相关资料</a></li>
+    <li><a href="#三-hugo的第一次启动">三， Hugo的第一次启动</a>
+      <ul>
+        <li><a href="#1安装">1，安装</a></li>
+        <li><a href="#2创建自己的blog">2，创建自己的Blog</a></li>
+        <li><a href="#3-创建第一篇文章">3， 创建第一篇文章</a></li>
+        <li><a href="#4设置主题">4，设置主题</a></li>
+        <li><a href="#5---运行测试">5,   运行测试</a></li>
+      </ul>
+    </li>
+    <li><a href="#四--将博客部署到github中进行访问">四，  将博客部署到Github中进行访问</a>
+      <ul>
+        <li><a href="#1-在github中新建一个仓库">1， 在Github中新建一个仓库</a></li>
+        <li><a href="#2-进行推送">2， 进行推送</a></li>
+      </ul>
+    </li>
+    <li><a href="#后续更新">后续更新</a>
+      <ul>
+        <li><a href="#1渲染后文章不显示">1，渲染后文章不显示</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+    })
+</script>
+    <article class="post">
+        <header>
+            <h1 class="post-title"> 在Windows环境下利用Hugo框架搭建自己的博客</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2020年2月29日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://hxyhlhz.github.io/categories/My-Blog'>My Blog</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <h2 id="一-hugo简介">一， Hugo简介</h2>
+<p>​	Hugo是基于Go语言开发的个人静态Blog框架，优势在部署简单。但是由于是静态网站，文章需要在本地编辑，转化为静态网页后才可以显示在Blog部署的环境中。</p>
+<h2 id="二--hugo相关资料">二，  Hugo相关资料</h2>
+<pre><code>-  安装包下载地址（Github）[https://github.com/gohugoio/hugo/releases]
+-  中文文档翻译 [https://www.gohugo.org/doc/overview/introduction/]
+-  主题下载站   [https://themes.gohugo.io/]
+</code></pre>
+<h2 id="三-hugo的第一次启动">三， Hugo的第一次启动</h2>
+<h3 id="1安装">1，安装</h3>
+<p>​	在上述网址中下载好对应安装包。由于我的环境是Windows10专业版64位。所以下载版本为windowsx64版本。解压后会得到hugo.exe的可执行文件。</p>
+<p>​	将可执行文件放入你要安装hugo的位置（最好全英文路径）本文路径为 D:\Hugo\bin，将此路径加入到本机PATH环境变量中即完成安装。</p>
+<p>​	想要确定是否安装成功，在cmd中输入：</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">hugo version
+</code></pre></td></tr></table>
+</div>
+</div><p>​	如果出现下图显示，即安装成功</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hxyhlhz/ImgHosting/Blog-Pic/hugo1.png" alt="1"></p>
+<h3 id="2创建自己的blog">2，创建自己的Blog</h3>
+<p>​	首先，确定好Blog建立的位置，我选择的路径为D:\Hugo\Sites 。键入命令</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">hugo new site D:\Hugo\Sites
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://cdn.jsdelivr.net/gh/hxyhlhz/ImgHosting/Blog-Pic/hugo2.png" alt="2"></p>
+<p>​	便在对应的位置成功生成了属于你的Blog</p>
+<h3 id="3-创建第一篇文章">3， 创建第一篇文章</h3>
+<p>​	在hugo中，文章都是以Markdown文件存储的。因此，掌握Markdown的写作语法还是很有必要的。</p>
+<p>​	我们进入Blog中的根目录下，在post文件夹下创建第一篇名为Blog1 的文章</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">hugo new post/Blog1.md
+
+## 如果成功，在content/post 目录下会出现名为Blog1.md的文件。利用markdown语法进行编辑即可
+</code></pre></td></tr></table>
+</div>
+</div><p>​	在文档中，我们写下Hello World！标题，作为测试</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hxyhlhz/ImgHosting/Blog-Pic/3.png" alt="3"></p>
+<p>​	可见，hugo新创建的文章中，标题与时间都已经自动添加好了。只需要我们专注于内容书写即可</p>
+<h3 id="4设置主题">4，设置主题</h3>
+<p>​	在上文提到的主题下载站选择自己喜欢的主题样式，在主题页面按照对应操作步骤进行git clone即可</p>
+<p>​	值得一提的是，完成hugo的部署一定是需要git的参与的。</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">git clone https://github.com/flysnow-org/maupassant-hugo themes/maupassant
+</code></pre></td></tr></table>
+</div>
+</div><p>在 themes 文件夹中就会看到安装好的主题文件夹</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hxyhlhz/ImgHosting/Blog-Pic/hugo4.png" alt="4"></p>
+<h3 id="5---运行测试">5,   运行测试</h3>
+<p>在根目录中的	config.toml  文件中，加入如下命令</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">theme = <span style="color:#d14">&#34;maupassant&#34;</span>  ## 关联Blog中的主题
+</code></pre></td></tr></table>
+</div>
+</div><p>在根目录中打开命令行，输入如下命令启动</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">hugo server -D
+</code></pre></td></tr></table>
+</div>
+</div><p>在本地就可以看到</p>
+<pre><code>port 1313 already in use, attempting to use an available port
+Building sites …
+                   | EN
+-------------------+-----
+  Pages            | 10
+  Paginator pages  |  0
+  Non-page files   |  0
+  Static files     |  5
+  Processed images |  0
+  Aliases          |  2
+  Sitemaps         |  1
+  Cleaned          |  0
+
+Built in 29 ms
+Watching for changes in D:\Hugo\Sites\{archetypes,content,data,layouts,static,themes}
+Watching for config changes in D:\Hugo\Sites\config.toml
+Environment: &quot;development&quot;
+Serving pages from memory
+Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
+Web Server is available at http://localhost:4761/ (bind address 127.0.0.1)
+Press Ctrl+C to stop
+</code></pre><p>在浏览器中输入其中的http://localhost:4761/  即可访问本地站点</p>
+<h2 id="四--将博客部署到github中进行访问">四，  将博客部署到Github中进行访问</h2>
+<h3 id="1-在github中新建一个仓库">1， 在Github中新建一个仓库</h3>
+<p>注意！ 仓库名称一定要是你的用户名+github.io</p>
+<p>例如我的就是hxyhlhz.github.io</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hxyhlhz/ImgHosting/Blog-Pic/hugo5.png" alt="5github"></p>
+<p>如果你有自己的域名的话，可以在建成仓库后进入settings选项卡</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hxyhlhz/ImgHosting/Blog-Pic/hugo6.png" alt="6settings"></p>
+<p>在红色方框的位置添加自己的域名（可不用备案）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hxyhlhz/ImgHosting/Blog-Pic/hugo7.png" alt="7自定义域名"></p>
+<h3 id="2-进行推送">2， 进行推送</h3>
+<p>​	在根目录中的	config.toml  文件中，将baseURL = &ldquo;<a href="http://hxyhlhz.github.io">http://hxyhlhz.github.io</a>&quot;中改为你的仓库名称。</p>
+<p>注意前面要有https://</p>
+<p>​	在根目录中打开cmd命令行，输入</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">hugo --buildDrafts
+</code></pre></td></tr></table>
+</div>
+</div><p>此时根目录下会多出名为public的文件夹</p>
+<p>在此文件夹下右键进入Git Bash界面，依次输入</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">git init      ## 初始化为git文件夹
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://cdn.jsdelivr.net/gh/hxyhlhz/ImgHosting/Blog-Pic/8.png" alt="8初始化"></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">git add *      ## 提交文件所有内容
+git commit -m <span style="color:#d14">&#34;博客的第一次提交&#34;</span>     ## 添加分支
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://cdn.jsdelivr.net/gh/hxyhlhz/ImgHosting/Blog-Pic/hugo9.png" alt="9提交"></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">git remote add origin https://github.com/username/username.github.io.git  
+##与你的github仓库关联，其中username为你的用户名
+</code></pre></td></tr></table>
+</div>
+</div><p>​	随后你就可以使用git push命令进行推送了。</p>
+<p>在第一次推送时可能需要进行与gihub的链接。所以一般使用下面命令进行推送。期间可能会进行github账户的验证</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">git push -u origin master      ## 推送到master分支
+</code></pre></td></tr></table>
+</div>
+</div><p>完成后会显示如下图所示情形</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hxyhlhz/ImgHosting/Blog-Pic/10.png" alt="10推送完成"></p>
+<p>后续更新博客即进行上述操作（无需重复进行关联github操作）即可！</p>
+<p>至此，我们完成了一个基于Hugo的个人博客的搭建。</p>
+<h2 id="后续更新">后续更新</h2>
+<h3 id="1渲染后文章不显示">1，渲染后文章不显示</h3>
+<p>在我对Blog模板更新时发现，套用模板后进行本地调试文章不显示。查阅资料后发现为文章表头处，默认draft参数为true，创建的是草稿类型，需要将<code>draft</code>值改为false才能看到页面</p>
+<p><img src="https://gitee.com/hxyhlhz/Imagehouse/raw/master/img/20200427130529.png" alt="文章"></p>
+
+        </div>
+
+        
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/archives/">归档</a></li>
+        
+        <li><a href="/search/">搜索</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='https://hxyhlhz.github.io/tags/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%8A%98%E8%85%BE'>个人博客折腾</a></li>
+                
+                <li><a href='https://hxyhlhz.github.io/tags/%E5%BB%BA%E7%AB%8B'>建立</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='https://hxyhlhz.github.io/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://hxyhlhz.github.io">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://hxyhlhz.github.io/post/TFrecord/" title="TensorFlow2系列中TFrecord数据集建立与使用">TensorFlow2系列中TFrecord数据集建立与使用</a>
+    </li>
+    
+    <li>
+        <a href="https://hxyhlhz.github.io/post/%E5%9F%BA%E4%BA%8EAnaconda%E7%9A%84PyTorch%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/" title="基于Anaconda的PyTorch虚拟环境安装">基于Anaconda的PyTorch虚拟环境安装</a>
+    </li>
+    
+    <li>
+        <a href="https://hxyhlhz.github.io/post/picture/" title="使用Github来建立自己的图床">使用Github来建立自己的图床</a>
+    </li>
+    
+    <li>
+        <a href="https://hxyhlhz.github.io/post/Hugo1/" title=" 在Windows环境下利用Hugo框架搭建自己的博客"> 在Windows环境下利用Hugo框架搭建自己的博客</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://hxyhlhz.github.io/categories/My-Blog/">My Blog (1)</a></li>
+    
+    <li><a href="https://hxyhlhz.github.io/categories/TensorFlow/">TensorFlow (1)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://hxyhlhz.github.io/tags/TensorFlow2.0/">TensorFlow2.0</a>
+    
+    <a href="https://hxyhlhz.github.io/tags/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%8A%98%E8%85%BE/">个人博客折腾</a>
+    
+    <a href="https://hxyhlhz.github.io/tags/%E5%BB%BA%E7%AB%8B/">建立</a>
+    
+    <a href="https://hxyhlhz.github.io/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/">数据集</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://www.blogliu.xyz" title="巴音布鲁克的海">巴音布鲁克的海</a>
+        </li>
+        
+        <li>
+            <a target="_blank" href="http://yuedu.baidu.com/ebook/14a722970740be1e640e9a3e" title="Android Gradle权威指南">Android Gradle权威指南</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://hxyhlhz.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="https://hxyhlhz.github.io">巴音布鲁克的海 By 巴音布鲁克的海</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'GA ID', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+    <script src='/js/douban.js'></script>
+
+</body>
+
+</html>

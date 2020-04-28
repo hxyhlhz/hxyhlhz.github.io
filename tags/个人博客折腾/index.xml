@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>个人博客折腾 on 巴音布鲁克的海</title>
+    <link>https://hxyhlhz.github.io/tags/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%8A%98%E8%85%BE/</link>
+    <description>Recent content in 个人博客折腾 on 巴音布鲁克的海</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 29 Feb 2020 14:02:35 +0800</lastBuildDate>
+    
+	<atom:link href="https://hxyhlhz.github.io/tags/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%8A%98%E8%85%BE/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title> 在Windows环境下利用Hugo框架搭建自己的博客</title>
+      <link>https://hxyhlhz.github.io/post/Hugo1/</link>
+      <pubDate>Sat, 29 Feb 2020 14:02:35 +0800</pubDate>
+      
+      <guid>https://hxyhlhz.github.io/post/Hugo1/</guid>
+      <description>一， Hugo简介 ​ Hugo是基于Go语言开发的个人静态Blog框架，优势在部署简单。但是由于是静态网站，文章需要在本地编辑，转化为静态网页后才可以显示在Blog部署的环境中。 二， Hugo相关资料 - 安装包下载地址（Github）[https://github.com/gohugoi</description>
+    </item>
+    
+  </channel>
+</rss>

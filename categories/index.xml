@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on 巴音布鲁克的海</title>
+    <link>https://hxyhlhz.github.io/categories/</link>
+    <description>Recent content in Categories on 巴音布鲁克的海</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 26 Apr 2020 19:41:52 +0800</lastBuildDate>
+    
+	<atom:link href="https://hxyhlhz.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>TensorFlow</title>
+      <link>https://hxyhlhz.github.io/categories/TensorFlow/</link>
+      <pubDate>Sun, 26 Apr 2020 19:41:52 +0800</pubDate>
+      
+      <guid>https://hxyhlhz.github.io/categories/TensorFlow/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>My Blog</title>
+      <link>https://hxyhlhz.github.io/categories/My-Blog/</link>
+      <pubDate>Sat, 29 Feb 2020 14:02:35 +0800</pubDate>
+      
+      <guid>https://hxyhlhz.github.io/categories/My-Blog/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
