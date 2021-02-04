@@ -6,19 +6,10 @@
     <description>Recent content in My Blog on 巴音布鲁克的海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 01 Aug 2020 15:52:35 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 29 Feb 2020 14:02:35 +0800</lastBuildDate>
     
 	<atom:link href="https://hxyhlhz.github.io/categories/My-Blog/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>2020年8月关于博客想法</title>
-      <link>https://hxyhlhz.github.io/post/%E5%85%AB%E6%9C%88%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E6%83%B3%E6%B3%95/</link>
-      <pubDate>Sat, 01 Aug 2020 15:52:35 +0800</pubDate>
-      
-      <guid>https://hxyhlhz.github.io/post/%E5%85%AB%E6%9C%88%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E6%83%B3%E6%B3%95/</guid>
-      <description>关于这个博客的内容和方向 1. 关于博客的更新 因为这个博客使用的是GitHub的下级域名，所以在百度无法搜索到。Google也只是在刻意搜索时才会检索到。所以这个博客我准备当做一个个人博客。记录一下自己的想法，计划以及对技术博客的备份。 技术博客 专门的技术博客我准备建立在阿里云的服务器中</description>
-    </item>
     
     <item>
       <title> 在Windows环境下利用Hugo框架搭建自己的博客</title>

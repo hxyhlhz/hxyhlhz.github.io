@@ -21,29 +21,20 @@
     </item>
     
     <item>
-      <title>My Blog</title>
-      <link>https://hxyhlhz.github.io/categories/My-Blog/</link>
-      <pubDate>Sat, 01 Aug 2020 15:52:35 +0800</pubDate>
-      
-      <guid>https://hxyhlhz.github.io/categories/My-Blog/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Pytorch</title>
-      <link>https://hxyhlhz.github.io/categories/Pytorch/</link>
-      <pubDate>Fri, 31 Jul 2020 15:45:21 +0800</pubDate>
-      
-      <guid>https://hxyhlhz.github.io/categories/Pytorch/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>TensorFlow</title>
       <link>https://hxyhlhz.github.io/categories/TensorFlow/</link>
       <pubDate>Sun, 26 Apr 2020 19:41:52 +0800</pubDate>
       
       <guid>https://hxyhlhz.github.io/categories/TensorFlow/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>My Blog</title>
+      <link>https://hxyhlhz.github.io/categories/My-Blog/</link>
+      <pubDate>Sat, 29 Feb 2020 14:02:35 +0800</pubDate>
+      
+      <guid>https://hxyhlhz.github.io/categories/My-Blog/</guid>
       <description></description>
     </item>
     
