@@ -6,10 +6,37 @@
     <description>Recent content in Posts on 巴音布鲁克的海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 26 Apr 2020 19:41:52 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 04 Feb 2021 11:42:44 +0800</lastBuildDate>
     
 	<atom:link href="https://hxyhlhz.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Git与使用操作</title>
+      <link>https://hxyhlhz.github.io/post/Git%E6%93%8D%E4%BD%9C/</link>
+      <pubDate>Thu, 04 Feb 2021 11:42:44 +0800</pubDate>
+      
+      <guid>https://hxyhlhz.github.io/post/Git%E6%93%8D%E4%BD%9C/</guid>
+      <description>Git是分布式版本控制工具 Git for WIndows下载 1，官网下载： Git for Windows 2，可视化Git工具： TortoiseGit – Windows Shell Interface to Git GIt签名配置 Git 的使用一般是基于文件夹使用，因此，在你要使用Git的文件夹中右键使用Git Bash打开 Git需要标注自己的用户名与邮箱。 一般在C:\User\自己用户文件夹，路</description>
+    </item>
+    
+    <item>
+      <title>2020年8月关于博客想法</title>
+      <link>https://hxyhlhz.github.io/post/%E5%85%AB%E6%9C%88%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E6%83%B3%E6%B3%95/</link>
+      <pubDate>Sat, 01 Aug 2020 15:52:35 +0800</pubDate>
+      
+      <guid>https://hxyhlhz.github.io/post/%E5%85%AB%E6%9C%88%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E6%83%B3%E6%B3%95/</guid>
+      <description>关于这个博客的内容和方向 1. 关于博客的更新 因为这个博客使用的是GitHub的下级域名，所以在百度无法搜索到。Google也只是在刻意搜索时才会检索到。所以这个博客我准备当做一个个人博客。记录一下自己的想法，计划以及对技术博客的备份。 技术博客 专门的技术博客我准备建立在阿里云的服务器中</description>
+    </item>
+    
+    <item>
+      <title>Faster_Rcnn的Pytorch版本(1)理论理解</title>
+      <link>https://hxyhlhz.github.io/post/Faster_Rcnn%E7%9A%84Pytorch%E7%89%88%E6%9C%AC1%E7%90%86%E8%AE%BA%E7%90%86%E8%A7%A3/</link>
+      <pubDate>Fri, 31 Jul 2020 15:45:21 +0800</pubDate>
+      
+      <guid>https://hxyhlhz.github.io/post/Faster_Rcnn%E7%9A%84Pytorch%E7%89%88%E6%9C%AC1%E7%90%86%E8%AE%BA%E7%90%86%E8%A7%A3/</guid>
+      <description>Faster_Rcnn理论 一，综述</description>
+    </item>
     
     <item>
       <title>TensorFlow2系列中TFrecord数据集建立与使用</title>

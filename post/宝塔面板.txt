@@ -1,0 +1,19 @@
+Bt-Panel: http://39.100.70.125:8888/83a1f182
+username: kx5bpypr
+password: 1471adeb
+
+
+typecho：
+
+地址：/www/wwwroot/www.moonlight.cool
+
+
+数据库账号资料
+
+数据库名：Liu_TypechoBlog
+
+用户：Liu_TypechoBlog
+
+密码：jsrK68RRAe
+
+访问站点：http://www.moonlight.cool

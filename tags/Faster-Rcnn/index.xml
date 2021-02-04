@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Faster-Rcnn on 巴音布鲁克的海</title>
+    <link>https://hxyhlhz.github.io/tags/Faster-Rcnn/</link>
+    <description>Recent content in Faster-Rcnn on 巴音布鲁克的海</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Fri, 31 Jul 2020 15:45:21 +0800</lastBuildDate>
+    
+	<atom:link href="https://hxyhlhz.github.io/tags/Faster-Rcnn/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Faster_Rcnn的Pytorch版本(1)理论理解</title>
+      <link>https://hxyhlhz.github.io/post/Faster_Rcnn%E7%9A%84Pytorch%E7%89%88%E6%9C%AC1%E7%90%86%E8%AE%BA%E7%90%86%E8%A7%A3/</link>
+      <pubDate>Fri, 31 Jul 2020 15:45:21 +0800</pubDate>
+      
+      <guid>https://hxyhlhz.github.io/post/Faster_Rcnn%E7%9A%84Pytorch%E7%89%88%E6%9C%AC1%E7%90%86%E8%AE%BA%E7%90%86%E8%A7%A3/</guid>
+      <description>Faster_Rcnn理论 一，综述</description>
+    </item>
+    
+  </channel>
+</rss>

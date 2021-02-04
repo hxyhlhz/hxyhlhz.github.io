@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>总结 on 巴音布鲁克的海</title>
+    <link>https://hxyhlhz.github.io/tags/%E6%80%BB%E7%BB%93/</link>
+    <description>Recent content in 总结 on 巴音布鲁克的海</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 01 Aug 2020 15:52:35 +0800</lastBuildDate>
+    
+	<atom:link href="https://hxyhlhz.github.io/tags/%E6%80%BB%E7%BB%93/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>2020年8月关于博客想法</title>
+      <link>https://hxyhlhz.github.io/post/%E5%85%AB%E6%9C%88%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E6%83%B3%E6%B3%95/</link>
+      <pubDate>Sat, 01 Aug 2020 15:52:35 +0800</pubDate>
+      
+      <guid>https://hxyhlhz.github.io/post/%E5%85%AB%E6%9C%88%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E6%83%B3%E6%B3%95/</guid>
+      <description>关于这个博客的内容和方向 1. 关于博客的更新 因为这个博客使用的是GitHub的下级域名，所以在百度无法搜索到。Google也只是在刻意搜索时才会检索到。所以这个博客我准备当做一个个人博客。记录一下自己的想法，计划以及对技术博客的备份。 技术博客 专门的技术博客我准备建立在阿里云的服务器中</description>
+    </item>
+    
+  </channel>
+</rss>

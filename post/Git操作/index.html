@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Git与使用操作 | 巴音布鲁克的海</title>
+    <meta property="og:title" content="Git与使用操作 - 巴音布鲁克的海">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2021-02-04T11:42:44&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2021-02-04T11:42:44&#43;08:00'>
+        
+    <meta name="Keywords" content=" ">
+    <meta name="description" content="Git与使用操作">
+        
+    <meta name="author" content="巴音布鲁克的海">
+    <meta property="og:url" content="https://hxyhlhz.github.io/post/Git%E6%93%8D%E4%BD%9C/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4031353640611810",
+        enable_page_level_ads: true
+    });
+    </script>
+    
+
+
+    
+    
+        <link rel="stylesheet" href='/css/douban.css'>
+    
+        <link rel="stylesheet" href='/css/other.css'>
+    </head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://hxyhlhz.github.io">
+                        巴音布鲁克的海
+                    </a>
+                
+                <p class="description"> </p></div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://hxyhlhz.github.io">首页</a>
+                    
+                    <a  href="https://hxyhlhz.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://hxyhlhz.github.io/about/" title="关于">关于</a>
+                    
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 15px;
+        display: none;
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#git-for-windows下载">Git for WIndows下载</a></li>
+    <li><a href="#git签名配置">GIt签名配置</a></li>
+    <li><a href="#git命令">Git命令</a>
+      <ul>
+        <li><a href="#1选中git项目工程目录并通过git-bash选项打开">1.选中git项目工程目录并通过git Bash选项打开</a></li>
+        <li><a href="#2在该文件夹下创建版本库">2.在该文件夹下创建版本库</a></li>
+        <li><a href="#3git文件提交场景">3.git文件提交场景</a></li>
+        <li><a href="#4git删除文件场景">4.git删除文件场景</a></li>
+        <li><a href="#5版本回退">5.版本回退</a></li>
+        <li><a href="#6其他命令待补充">6，其他命令（待补充）</a></li>
+        <li><a href="#7git创建分支">7，Git创建分支</a></li>
+      </ul>
+    </li>
+    <li><a href="#为git与github通过ssh链接">为Git与GitHub通过ssh链接</a></li>
+    <li><a href="#github中使用git">GitHub中使用Git</a>
+      <ul>
+        <li><a href="#1-在github中创建对应库">1. 在GitHub中创建对应库</a></li>
+        <li><a href="#2将代码同步至github仓库">2.将代码同步至GitHub仓库</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+    })
+</script>
+    <article class="post">
+        <header>
+            <h1 class="post-title">Git与使用操作</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2021年2月4日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://hxyhlhz.github.io/categories/%E6%97%A5%E5%B8%B8%E6%8A%80%E6%9C%AF'>日常技术</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <p>Git是分布式版本控制工具</p>
+<h2 id="git-for-windows下载">Git for WIndows下载</h2>
+<p>1，官网下载： <a href="https://gitforwindows.org/">Git for Windows</a></p>
+<p>2，可视化Git工具： <a href="https://tortoisegit.org/">TortoiseGit – Windows Shell Interface to Git</a></p>
+<h2 id="git签名配置">GIt签名配置</h2>
+<p>Git 的使用一般是基于文件夹使用，因此，在你要使用Git的文件夹中右键使用Git Bash打开</p>
+<pre><code>Git需要标注自己的用户名与邮箱。
+一般在C:\User\自己用户文件夹，路径下，会存在名为“.gitconfig”的文件，在其中存储了该用户下git的全局签名（用户名，邮箱）。所有git项目默认都会使用该签名（属性）。
+</code></pre><p>Git全局属性的配置：（一般要求和GItHub用户邮箱相同）</p>
+<pre><code class="language-git" data-lang="git">git config --global user.name &quot;要改的用户名&quot;
+git config --global user.email &quot;邮箱&quot;
+</code></pre><h2 id="git命令">Git命令</h2>
+<h3 id="1选中git项目工程目录并通过git-bash选项打开">1.选中git项目工程目录并通过git Bash选项打开</h3>
+<h3 id="2在该文件夹下创建版本库">2.在该文件夹下创建版本库</h3>
+<pre><code class="language-git" data-lang="git">git init
+</code></pre><p>创建之后在文件夹下会有个“.git”的隐藏文件夹，git所有版本控制文件都在其中</p>
+<p><img src="https://liu-pic.oss-cn-beijing.aliyuncs.com/img/image-20210129174326751.png" alt="git创建版本库"></p>
+<h3 id="3git文件提交场景">3.git文件提交场景</h3>
+<h4 id="31-查看当前文件git状态">3.1 查看当前文件git状态</h4>
+<pre><code class="language-git" data-lang="git">git status    
+​```
+命令表示当前文件夹中所有文件在git分支中的状态：未追踪加入暂存区（文件名称为红色） 追踪未同步，追踪已同步等
+​```
+</code></pre><p><img src="https://liu-pic.oss-cn-beijing.aliyuncs.com/img/image-20210203203608230.png" alt="未进行追踪"></p>
+<h4 id="32对目录中更改的文件进行追踪">3.2对目录中更改的文件进行追踪</h4>
+<pre><code class="language-git" data-lang="git">## 对全部已更改文件进行追踪
+git add * 
+## 对某个或者多个文件进行追踪
+git add 文件名
+</code></pre><p>下图是将全部文件追踪后文件夹git状态，发现原来为红色的文件被追踪保存在git此分支暂存区中：</p>
+<p><img src="https://liu-pic.oss-cn-beijing.aliyuncs.com/img/image-20210203204233718.png" alt="gitadd"></p>
+<h4 id="33-对暂存区文件进行提交">3.3 对暂存区文件进行提交</h4>
+<pre><code class="language-git" data-lang="git"># 对所有暂存区文件提交到该分支并备注说明信息
+git commit -m &quot;说明信息&quot;
+</code></pre><p>提交后git状态如下图</p>
+<p><img src="https://liu-pic.oss-cn-beijing.aliyuncs.com/img/image-20210203204943583.png" alt="提交"></p>
+<p>提交后会提示你此次提交己有过更改的文件，并且可以在日志文件中找到记录</p>
+<pre><code># 显示日志文件
+git log
+</code></pre><p><img src="https://liu-pic.oss-cn-beijing.aliyuncs.com/img/image-20210203205203181.png" alt="log文件"></p>
+<h3 id="4git删除文件场景">4.git删除文件场景</h3>
+<p>在使用过程中，当需要对提交的文件进行删除时，可以使用下面一系列命令对某个文件进行删除，之后进行文件提交，流程与上一节相似</p>
+<pre><code class="language-git" data-lang="git"># 删除test.txt文件
+git rm test.txt
+# 查看git状态(可以省略)
+git status
+# 执行提交
+git commit -m &quot;删除不需要文件&quot;
+# 查看执行日志
+git log
+</code></pre><p><img src="https://liu-pic.oss-cn-beijing.aliyuncs.com/img/image-20210203210030356.png" alt="删除文件操作"></p>
+<h3 id="5版本回退">5.版本回退</h3>
+<p>在git log命令显示的界面中，我们发现在commit处黄色部分有着唯一的编码，这有且唯一的指代着每一次操作，而其中</p>
+<p>（HEAD—&gt; master） 表示这一系列操作时在master分支上进行操作的，而最近一次更改的HEAD指针指向括号所标记的操作编码处</p>
+<p>因此，当我们需要版本回退时，只需要将HEAD指针指向我们所要回退到的提交版本编号处就可以了</p>
+<pre><code class="language-git" data-lang="git">## 将HEAD指针指向所要回退的编号处
+git reset --hard 47f5f0   ## 版本编号不必补全，git会自动查找
+## 查看日志
+git log
+</code></pre><p><img src="https://liu-pic.oss-cn-beijing.aliyuncs.com/img/image-20210203211607388.png" alt="版本回退"></p>
+<p>但是要注意，版本回退后git log将不显示当前版本之后的操作，如果想要改回原版本，就必须牢记版本号！！！！</p>
+<pre><code># 改回原版本
+git reset --hard 237e
+git log
+</code></pre><p><img src="https://liu-pic.oss-cn-beijing.aliyuncs.com/img/image-20210203211926672.png" alt="image-20210203211926672"></p>
+<h3 id="6其他命令待补充">6，其他命令（待补充）</h3>
+<h4 id="61-查看操作记录">6.1 查看操作记录</h4>
+<p>由于git reset &ndash;hard 特性，常常会忘记回退之后的版本号，使用git reflog命令就可以查看当前对版本进行的所有操作</p>
+<pre><code class="language-git" data-lang="git">git reflog
+</code></pre><p><img src="https://liu-pic.oss-cn-beijing.aliyuncs.com/img/image-20210203212514529.png" alt="操作日志"></p>
+<h3 id="7git创建分支">7，Git创建分支</h3>
+<p>工作时，主分支（master）一般不轻易更改以保证项目可以正常工作，但是当有新的需求时，我们可以在主分支中新分出一个新的分支来进行新需求的更改和测试。当完成后将其合并入主分支中继续运行。</p>
+<p>分支是Git中非常重要的概念，关于分支的理解可以见下面博文https://www.cnblogs.com/matengfei123/p/8252128.html</p>
+<h4 id="71-查看现有分支">7.1 查看现有分支</h4>
+<pre><code># 查看现有的分支
+git branch
+## 注意！ *所在位置为当前所处分支
+</code></pre><p><img src="https://liu-pic.oss-cn-beijing.aliyuncs.com/img/image-20210203213813453.png" alt="查看分支"></p>
+<h4 id="72-创建新分支">7.2 创建新分支</h4>
+<pre><code># 创建新的分支 Testing
+git branch Testing
+# 查看当前分支状态
+git branch
+</code></pre><p><img src="https://liu-pic.oss-cn-beijing.aliyuncs.com/img/image-20210203214019664.png" alt="创建分支Testing"></p>
+<h4 id="73-切换分支">7.3 切换分支</h4>
+<pre><code># 从master分支切换至 Testing分支
+git checkout Testing
+# 查看当前分支状态
+git branch
+</code></pre><p><img src="https://liu-pic.oss-cn-beijing.aliyuncs.com/img/image-20210203214307213.png" alt="切换分支"></p>
+<p>可以看到，切换分支后*指向Testing分支，此时，在Testing分支中的所有追踪或者提交等操作都与master分支无关</p>
+<h4 id="74-合并分支当前分支与目标分支合并">7.4 合并分支（当前分支与目标分支合并）</h4>
+<p>假设Testing分支中新增的业务需求完成编码与测试，想要将其整合到处于master分支中已上线运行的项目中时。</p>
+<ul>
+<li>
+<p>将分支切换至master分支</p>
+</li>
+<li>
+<p>将master分支与Testing分支合并</p>
+</li>
+</ul>
+<pre><code class="language-git" data-lang="git"># 分支切换至master分支
+git checkout master
+# 合并分支
+git merge Testing 
+</code></pre><p><img src="https://liu-pic.oss-cn-beijing.aliyuncs.com/img/image-20210203215041255.png" alt="合并分支"></p>
+<h4 id="75-删除分支">7.5 删除分支</h4>
+<pre><code># 删除无用的分支Testing
+git branch -d Testing 
+# 查看分支状态
+git branch
+</code></pre><p><img src="https://liu-pic.oss-cn-beijing.aliyuncs.com/img/image-20210203215236183.png" alt="删除分支"></p>
+<h2 id="为git与github通过ssh链接">为Git与GitHub通过ssh链接</h2>
+<p>在设置好用户名与邮箱后</p>
+<pre><code># 生成Key
+ ssh-keygen -t rsa -C &quot;设置的邮箱名称&quot;
+&lt;注意，会提示默认设置密码等，通用做法一路默认回车，成功效果如图&gt;
+</code></pre><p><img src="https://liu-pic.oss-cn-beijing.aliyuncs.com/img/image-20210204113013975.png" alt="生成key"></p>
+<p>生成key文件在C;:/User/.ssh/id_rsa.pub中</p>
+<p>如果要生成多个key，则在第二步时要另外起一个名字，例如“id_rsa_github”，因为默认key是存放在id_rsa.pub中，防止被覆盖</p>
+<pre><code># 直接复制生成的key
+clip &lt;~/.ssh/id_rsa.pub
+# 查看生成的key
+cat &lt;~/.ssh/id_rsa.pub
+</code></pre><p>界面如图</p>
+<p><img src="https://liu-pic.oss-cn-beijing.aliyuncs.com/img/image-20210204113304751.png" alt="image-20210204113304751"></p>
+<p>将key复制到GitHub设置（setting）中</p>
+<p><img src="https://liu-pic.oss-cn-beijing.aliyuncs.com/img/image-20210204113504999.png" alt="image-20210204113504999"></p>
+<p>设置成功后运行</p>
+<pre><code>ssh -T git@github.com
+应出现以下显示
+</code></pre><p><img src="https://liu-pic.oss-cn-beijing.aliyuncs.com/img/image-20210204113608665.png" alt="image-20210204113608665"></p>
+<h2 id="github中使用git">GitHub中使用Git</h2>
+<h3 id="1-在github中创建对应库">1. 在GitHub中创建对应库</h3>
+<p>登录自己的GitHub，选择创建new repository 进入创建界面，</p>
+<p><img src="https://liu-pic.oss-cn-beijing.aliyuncs.com/img/image-20210204104403783.png" alt="创建库"></p>
+<p>此时，进入你的代码仓库，右上角Code按钮点击，会显示仓库访问方式，一般同步时会使用SSH提供的SSH Key进行同步</p>
+<h3 id="2将代码同步至github仓库">2.将代码同步至GitHub仓库</h3>
+<p>进入想要同步的文件夹，使用Git Bash打开</p>
+<pre><code># 添加远程仓库至本地
+git remote add origin &lt;仓库SSH地址&gt;
+# 合并本地仓库与远程仓库
+git push -u origin master
+</code></pre><p><img src="https://liu-pic.oss-cn-beijing.aliyuncs.com/img/image-20210204112328811.png" alt="image-20210204112328811"></p>
+<p><img src="https://liu-pic.oss-cn-beijing.aliyuncs.com/img/image-20210204112353159.png" alt="push"></p>
+
+        </div>
+
+        
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/%E5%85%AB%E6%9C%88%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E6%83%B3%E6%B3%95/">2020年8月关于博客想法</a></li>
+        
+        <li><a href="/post/Faster_Rcnn%E7%9A%84Pytorch%E7%89%88%E6%9C%AC1%E7%90%86%E8%AE%BA%E7%90%86%E8%A7%A3/">Faster_Rcnn的Pytorch版本(1)理论理解</a></li>
+        
+        <li><a href="/about/">关于我</a></li>
+        
+        <li><a href="/post/TFrecord/">TensorFlow2系列中TFrecord数据集建立与使用</a></li>
+        
+        <li><a href="/post/%E5%9F%BA%E4%BA%8EAnaconda%E7%9A%84PyTorch%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/">基于Anaconda的PyTorch虚拟环境安装</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='https://hxyhlhz.github.io/tags/Git'>Git</a></li>
+                
+                <li><a href='https://hxyhlhz.github.io/tags/%E6%8A%80%E6%9C%AF'>技术</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='https://hxyhlhz.github.io/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://hxyhlhz.github.io">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://hxyhlhz.github.io/post/Git%E6%93%8D%E4%BD%9C/" title="Git与使用操作">Git与使用操作</a>
+    </li>
+    
+    <li>
+        <a href="https://hxyhlhz.github.io/post/%E5%85%AB%E6%9C%88%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E6%83%B3%E6%B3%95/" title="2020年8月关于博客想法">2020年8月关于博客想法</a>
+    </li>
+    
+    <li>
+        <a href="https://hxyhlhz.github.io/post/Faster_Rcnn%E7%9A%84Pytorch%E7%89%88%E6%9C%AC1%E7%90%86%E8%AE%BA%E7%90%86%E8%A7%A3/" title="Faster_Rcnn的Pytorch版本(1)理论理解">Faster_Rcnn的Pytorch版本(1)理论理解</a>
+    </li>
+    
+    <li>
+        <a href="https://hxyhlhz.github.io/post/TFrecord/" title="TensorFlow2系列中TFrecord数据集建立与使用">TensorFlow2系列中TFrecord数据集建立与使用</a>
+    </li>
+    
+    <li>
+        <a href="https://hxyhlhz.github.io/post/%E5%9F%BA%E4%BA%8EAnaconda%E7%9A%84PyTorch%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/" title="基于Anaconda的PyTorch虚拟环境安装">基于Anaconda的PyTorch虚拟环境安装</a>
+    </li>
+    
+    <li>
+        <a href="https://hxyhlhz.github.io/post/picture/" title="使用Github来建立自己的图床">使用Github来建立自己的图床</a>
+    </li>
+    
+    <li>
+        <a href="https://hxyhlhz.github.io/post/Hugo1/" title=" 在Windows环境下利用Hugo框架搭建自己的博客"> 在Windows环境下利用Hugo框架搭建自己的博客</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://hxyhlhz.github.io/categories/My-Blog/">My Blog (2)</a></li>
+    
+    <li><a href="https://hxyhlhz.github.io/categories/Pytorch/">Pytorch (1)</a></li>
+    
+    <li><a href="https://hxyhlhz.github.io/categories/TensorFlow/">TensorFlow (1)</a></li>
+    
+    <li><a href="https://hxyhlhz.github.io/categories/%E6%97%A5%E5%B8%B8%E6%8A%80%E6%9C%AF/">日常技术 (1)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://hxyhlhz.github.io/tags/Faster-Rcnn/">Faster-Rcnn</a>
+    
+    <a href="https://hxyhlhz.github.io/tags/Git/">Git</a>
+    
+    <a href="https://hxyhlhz.github.io/tags/PyTorch/">PyTorch</a>
+    
+    <a href="https://hxyhlhz.github.io/tags/TensorFlow2.0/">TensorFlow2.0</a>
+    
+    <a href="https://hxyhlhz.github.io/tags/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%8A%98%E8%85%BE/">个人博客折腾</a>
+    
+    <a href="https://hxyhlhz.github.io/tags/%E5%8F%8D%E6%80%9D/">反思</a>
+    
+    <a href="https://hxyhlhz.github.io/tags/%E5%BB%BA%E7%AB%8B/">建立</a>
+    
+    <a href="https://hxyhlhz.github.io/tags/%E6%80%BB%E7%BB%93/">总结</a>
+    
+    <a href="https://hxyhlhz.github.io/tags/%E6%8A%80%E6%9C%AF/">技术</a>
+    
+    <a href="https://hxyhlhz.github.io/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/">数据集</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://www.blogliu.xyz" title="巴音布鲁克的海">巴音布鲁克的海</a>
+        </li>
+        
+        <li>
+            <a target="_blank" href="http://yuedu.baidu.com/ebook/14a722970740be1e640e9a3e" title="Android Gradle权威指南">Android Gradle权威指南</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://hxyhlhz.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2021 <a href="https://hxyhlhz.github.io">巴音布鲁克的海 By 巴音布鲁克的海</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'GA ID', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+    <script src='/js/douban.js'></script>
+
+
+
+</body>
+
+</html>
